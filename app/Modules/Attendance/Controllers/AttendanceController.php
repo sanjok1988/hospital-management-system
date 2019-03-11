@@ -6,8 +6,9 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Modules\Attendance\Models\Attendance;
 use Illuminate\Support\Facades\Auth;
+use App\Modules\Options\Models\Options;
+use App\Modules\Attendance\Models\Attendance;
 
 
 class AttendanceController extends Controller
@@ -133,11 +134,16 @@ class AttendanceController extends Controller
                 'time_in' => $current_time,
                 'time_out' => $current_time
             ];
+            $cur_time = (Carbon::createFromFormat('Y-m-d H:i:s', $current_time)->format('H:i:s'));
+            $att = getStatus($cur_time, Options::getOption("sign_in_time"));
+            $data['status'] = $att['status'];
+            $data['time_diff'] = $att['time_diff'];
+            
             $this->model->create($data);
             $request->session()->flash('message', "successfully Recorded. Thank you!");
-            return redirect(route('attendance.index'));
+            return redirect(route('attendance.my'));
         }else{
-            return redirect(route('attendance.index'));
+            return redirect(route('attendance.my'));
         }
     }
 
@@ -175,11 +181,11 @@ class AttendanceController extends Controller
                
             } else {
                 $request->session()->flash('message', "Sign in first!");
-                return redirect(route('attendance.index')); 
+                return redirect(route('attendance.my')); 
             }
             
         }else{
-            return redirect(route('attendance.index'));
+            return redirect(route('attendance.my'));
         }
     }
 

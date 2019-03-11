@@ -52,6 +52,7 @@
                             <th scope="col">Sign In</th>
                             <th scope="col">Sign Out</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Time Diff</th>
                             <th scope="col">Note</th>
                           </tr>
                         </thead>
@@ -64,7 +65,8 @@
                             <th scope="row">{{ $i }}</th>
                           <td>{{ $value->time_in }}</td>
                             <td>{{ $value->time_out }}</td>
-                            <td>{{ "Late" }}</td>
+                            <td>{{ $value->status }}</td>
+                            <td>{{ $value->time_diff }}</td>
                             <td>{{ $value->note }}</td>
                           </tr>
                           @endforeach

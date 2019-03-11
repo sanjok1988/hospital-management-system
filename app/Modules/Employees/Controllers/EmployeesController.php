@@ -83,11 +83,11 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        if ($id = $request->has('id')) {
-            $find = $this->model->find($id);
-            
+        if ($request->has('id')) {
+            $find = $this->model->find($request->id);
+           
             if ($find) {
-                $data = $request->except('_token');
+                $data = $request->except('_token','id');
                 $find->update($data);
             }
         } else {
@@ -145,17 +145,17 @@ class EmployeesController extends Controller
         }
     }
     //update
-    public function update(Request $request, $id)
-    {
-        $data = $request->except('_token');
+    // public function update(Request $request, $id)
+    // {
+    //     $data = $request->except('_token');
      
-        if ($this->model->update($id, $data)) {
-            $response = "success";
-        } else {
-            $response = "failed";
-        }
-        return response()->json($response);
-    }
+    //     if ($this->model->update($id, $data)) {
+    //         $response = "success";
+    //     } else {
+    //         $response = "failed";
+    //     }
+    //     return response()->json($response);
+    // }
 
     
     //deleting the table

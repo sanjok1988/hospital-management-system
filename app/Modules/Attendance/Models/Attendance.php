@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Attendance extends Model
 {
     protected $table = 'attendance';
-    protected $fillable = ['employee_id', 'time_in', 'time_out', 'note'];
+    protected $fillable = ['employee_id', 'time_in', 'time_out', 'note','ip','status','time_diff'];
 
     /**
      * Check if already sign in function

@@ -4,6 +4,7 @@ return [
     //modules
     "company" => "Company",
     "employee" => "Employee",
+    "employees" => "Employees",
     "users" => "Users",
     "roles" => "Roles",
     //common table cloumns
@@ -14,4 +15,9 @@ return [
     "name" => "Name",
     "details" => "Details",
     "description" => "Decription",
+
+    //message
+    "success"=>"Success",
+    "failed"=>"Failed",
+    "updated"=>"Updated"
 ];

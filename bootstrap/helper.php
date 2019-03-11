@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
 if (!function_exists('setCookie')) {
@@ -68,4 +69,34 @@ function getUserIP()
     }
 
     return $ipaddress;
+}
+
+function getStatus($sign_in_time, $setting_time){
+    $sign_in = \Carbon\Carbon::createFromFormat('H:i:s', $sign_in_time);
+    $set_time = \Carbon\Carbon::createFromFormat('H:i:s', $setting_time);
+    $diff = $set_time->diffInMinutes($sign_in);
+    
+        $data['time_diff']= gmdate('H:i:s', $diff);//convertToHoursMins($diff); 
+        dd(Carbon::create($sign_in_time)->diffForHumans());
+
+    if($diff != 0 || $diff > 0){
+        $data['status']= "late";
+        return $data;
+    } elseif($diff < 0) {
+        $data['status']= 'before time';
+        return $data;
+    }elseif($diff < 0) {
+        $data['status']= 'at time';
+        return $data;
+    }
+
+}
+
+function convertToHoursMins($time) {
+    if ($time < 1) {
+        return;
+    }
+    $hours = floor($time / 60);
+    $minutes = ($time % 60);
+    return $hours.":" . $minutes;
 }

@@ -56,8 +56,9 @@
                           <tr>
                             <th scope="row">{{ $i }}</th>
                           <td>{{ $value->time_in }}</td>
-                            <td>{{ $value->time_out }}</td>
-                            <td>{{ "Late" }}</td>
+                            <td>{{ ($value->time_out == $value->time_in)?"ready to sign out":$value->time_out }}</td>
+                            <?php ?>
+                          <td>{{ $value->status }}</td>
                             <td>{{ $value->note }}</td>
                           </tr>
                           @endforeach

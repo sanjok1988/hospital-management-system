@@ -7,9 +7,10 @@
 ?>
 <div class="box-header">
    @if(isset($page))
-   <h3 class="box-title">{{ ucfirst(trans('words.'.$page)) }} Create</h3>
+   <h3 class="box-title">{{ ucfirst(trans('words.'.$page)) }} 
+   Profile</h3>
    @endif
-   <a class="btn btn-success btn-sm pull-right" title="List" href="{{ route($page.'.index')}}" ><i class="fa fa-list"></i> List</a>
+
 </div>
 <!-- /.box-header -->
 <div class="box-body">
@@ -35,8 +36,16 @@
                <input type="text" class="form-control" name="last_name" placeholder="Last Name" value="{{ ($flag)?$data->last_name:'' }}">
             </div>
             <div class="form-group">
-                    <label for="">Gender</label>
-                    <input type="text" class="form-control" name="gender" placeholder="Gender" value="{{ ($flag)?$data->gender:'' }}">
+                    <label for="" style="min-width:150px">Gender</label>
+                    
+                    <label class="checkbox-inline">
+                       <input type="radio" name="gender" value="male" {{ ($data->gender == "male")?"checked":'' }} checked>Male
+                    </label>
+               
+                    <label class="checkbox-inline">
+                    <input type="radio" name="gender" value="female" style="margin-left:30px" {{ ($data->gender == "female")?'checked':'' }}>Female
+                    </label>
+                 
                  </div>
             <div class="form-group">
                <label for="">Nationality</label>
@@ -65,15 +74,15 @@
             
             <div class="form-group">
                <label for="">Job Title</label>
-               <input type="text" class="form-control" name="job_title" placeholder="Job Title" value="{{ ($flag)?$data->job_title:'' }}">
+               <input type="text" class="form-control" name="job_title" placeholder="Job Title" value="{{ ($flag)?$data->job_title:'' }}" disabled>
             </div>
             <div class="form-group">
                <label for="">Pay Grade</label>
-               <input type="text" class="form-control" name="pay_grade" placeholder="Pay Grade" value="{{ ($flag)?$data->pay_grade:'' }}">
+               <input type="text" class="form-control" name="pay_grade" placeholder="Pay Grade" value="{{ ($flag)?$data->pay_grade:'' }}" disabled>
             </div>
             <div class="form-group">
                <label for="">Work Phone</label>
-               <input type="text" class="form-control" name="work_phone" placeholder="Work Phone" value="{{ ($flag)?$data->work_phone:'' }}">
+               <input type="text" class="form-control" name="work_phone" placeholder="Work Phone" value="{{ ($flag)?$data->work_phone:'' }}" disabled>
             </div>
             <div class="form-group">
                <label for="">Work Email</label>
@@ -82,20 +91,20 @@
             
             <div class="form-group">
                <label for="">Joined Date</label>
-               <input type="date" class="form-control" name="joined_date" placeholder="Joined Date" value="{{ ($flag)?$data->joined_date:'' }}">
+               <input type="date" class="form-control" name="joined_date" placeholder="Joined Date" value="{{ ($flag)?$data->joined_date:'' }}" disabled>
             </div>
             <div class="form-group">
                <label for="">Termination Date</label>
-               <input type="date" class="form-control" name="termination_date" placeholder="Termination Date" value="{{ ($flag)?$data->termination_date:'' }}">
+               <input type="date" class="form-control" name="termination_date" placeholder="Termination Date" value="{{ ($flag)?$data->termination_date:'' }}" disabled>
             </div>
             <div class="form-group">
                <label for="">Department</label>
-               <input type="text" class="form-control" name="department" placeholder="Department" value="{{ ($flag)?$data->department:'' }}">
+               <input type="text" class="form-control" name="department" placeholder="Department" value="{{ ($flag)?$data->department:'' }}" disabled>
             </div>
             
             <div class="form-group">
                <label for="">Supervisor</label>
-               <input type="text" class="form-control" name="supervisor" placeholder="Supervisor" value="{{ ($flag)?$data->supervisor:'' }}">
+               <input type="text" class="form-control" name="supervisor" placeholder="Supervisor" value="{{ ($flag)?$data->supervisor:'' }}" disabled>
             </div>
             <div class="form-group">
                <label for="">notes</label>
