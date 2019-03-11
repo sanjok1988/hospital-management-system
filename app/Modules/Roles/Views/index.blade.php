@@ -26,13 +26,13 @@
         <td>{{ $value->description }}</td>
        
         <td>
-          <span class="badge badge-success" v-if="item.deleted_at">InActive</span>
-          <span class="badge badge-success" else>Active</span>
+          <span class="badge badge-success" >{{ $value->deleted_at ? "InActive" : "Active" }}</span>
         </td>
         <td>
             <a href="{{ route($page.'.edit', [$value->id])}}" class="btn btn-outline-primary" alt="@lang('words.edit')"> <i class="fa fa-pencil"></i></a>
-
+            @if($value->name != "admin" && $value->name != "hr" && $value->name != "employee")
             <a href="{{ route($page.'.delete', $value->id)}}" class="btn btn-outline-danger" alt="@lang('words.delete')"><i class="fa fa-trash"></i></a>
+            @endif
         </td>
       </tr>    
       @endforeach    

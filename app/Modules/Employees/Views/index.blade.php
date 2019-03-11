@@ -33,8 +33,7 @@
         <td>{{ $value->private_email }}</td>
         <td>{{ $value->joined_date }}</td>
         <td>
-          <span class="badge badge-success" v-if="item.deleted_at">InActive</span>
-          <span class="badge badge-success" else>Active</span>
+          <span class="badge badge-success" >{{ $value->deleted_at ? "InActive" : "Active" }}</span>
         </td>
         <td>
             <a href="{{ route($page.'.edit', $value->id)}}" class="btn btn-outline-primary" alt="@lang('words.edit')"> <i class="fa fa-pencil"></i></a>

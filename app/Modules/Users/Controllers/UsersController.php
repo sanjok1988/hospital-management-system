@@ -2,6 +2,7 @@
 
 namespace App\Modules\Users\Controllers;
 
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -41,27 +42,17 @@ class UsersController extends Controller
         return view("Users::create", compact('page','action'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function assignRole($id)
     {
-        //
+        $page = $this->page;
+        $action = "assignRole";
+        $data = $this->model->find($id);
+        $roles = Role::get();
+      
+        return view("Users::create", compact('data','roles','page','action'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
