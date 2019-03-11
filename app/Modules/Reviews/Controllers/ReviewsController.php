@@ -4,15 +4,28 @@ namespace App\Modules\Reviews\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Modules\Reviews\Models\Reviews;
+use App\Modules\Reviews\Models\ReviewList;
 
 class ReviewsController extends Controller
 {
     protected $review;
 
-    public function __construct(Reviews $review)
+    public function __construct(Reviews $review, ReviewList $reviewList)
     {
         $this->review = $review;
+        $this->reviewList = $reviewList;
+    }
+
+    public function showForm(){
+        $form = $this->reviewList->where('employee_id', Auth::user()->id)->first();
+        if($form){
+            return view("Reviews::".$form->form_name);
+        }else{
+            return back();
+        }
+
     }
     /**
      * Create Template form for review

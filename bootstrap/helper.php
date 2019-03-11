@@ -77,7 +77,7 @@ function getStatus($sign_in_time, $setting_time){
     $diff = $set_time->diffInMinutes($sign_in);
     
         $data['time_diff']= gmdate('H:i:s', $diff);//convertToHoursMins($diff); 
-        dd(Carbon::create($sign_in_time)->diffForHumans());
+        dd($sign_in_time->timestamp);
 
     if($diff != 0 || $diff > 0){
         $data['status']= "late";

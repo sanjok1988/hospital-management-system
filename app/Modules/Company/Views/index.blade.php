@@ -7,7 +7,7 @@
         <a class="btn btn-success btn-sm pull-right" title="Create New" href="{{ route($page.'.create')}}" ><i class="fa fa-plus"></i> Create New</a>
       </div>
             <div class="box-body">
-                <table class="table table-bordered table-hover " >
+                <table id="table" class="table table-bordered table-hover " >
                     <thead>
                     <tr>
                         <th>{{ trans('words.id')}}</th>

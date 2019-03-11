@@ -9,11 +9,23 @@ use App\Modules\FormTemplate\Models\FormTemplate;
 class FormTemplateController extends Controller
 {
     protected $template;
-    
+    private $page = "form";
+
     public function __construct(FormTemplate $template)
     {
         $this->template = $template;
     }
+
+    public function index(){
+        return view("FormTemplate::index");
+    }
+
+    public function create(){
+        $page = $this->page;
+        $action = "create";
+        return view("FormTemplate::create", compact('page','action'));
+    }
+
 
     public function getTemplates()
     {
@@ -39,7 +51,7 @@ class FormTemplateController extends Controller
         return response()->json($response);
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $data = $request->all();
        

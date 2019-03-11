@@ -38,7 +38,7 @@
                 <div class="card-header">Attendance Board<span class="pull-right"><b>Today:</b> {{ \Carbon\Carbon::now()->toDayDateTimeString() }}</span></div>
 
                
-                <table class="table table-bordered table-hover ">
+                <table id="table" class="table table-bordered table-hover ">
                         <thead>
                           <tr>
                             <th scope="col">#</th>

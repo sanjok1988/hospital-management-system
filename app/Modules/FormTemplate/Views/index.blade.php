@@ -45,7 +45,58 @@
 
 @endsection
 @section('script')
+
+          <script src="{{ asset('vue/vue-dynamic-form.js')}}"></script>
     <script>
         
+  new Vue( {
+    name: 'edit-form-tester',
+    methods: {
+      submitForm(data) {
+        console.log(data)
+      }
+    },
+    data () {
+      return {
+        fields: [
+          {
+            name: 'title',
+            label: 'Title',
+            type: 'text'
+          },
+          {
+            name: 'test',
+            label: 'rest',
+            type: 'text'
+          },
+          {
+            name: 'yes-no',
+            label: 'Yes or No?',
+            type: 'select',
+            options: {
+              yes: 'Yes',
+              no: 'No'
+            }
+          },
+          {
+            name: 'body',
+            label: 'Body',
+            type: 'textarea',
+            rows: 8,
+            cols: 30
+          }
+        ],
+        entity: {
+          'yes-no': 'yes',
+          body: '<p>Welcome to paradise</p><p>Have another paragraph on me.</p>',
+          title: 'Hello World'
+        }
+      }
+    },
+    components: {
+      VueDynamicForm
+    }
+  })
+
     </script>
 @endsection

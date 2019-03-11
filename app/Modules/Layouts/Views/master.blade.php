@@ -35,6 +35,11 @@
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.common.dev.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.js"></script>
+
+
 @yield('style')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -262,10 +267,10 @@ function goBack() {
     window.history.back();
 }
 $(document).ready( function () {
-    $(".table").DataTable();
+    $("#table").DataTable();
 } );
 
 </script>
-
+@yield('script')
 </body>
 </html>

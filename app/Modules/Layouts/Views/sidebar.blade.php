@@ -69,6 +69,40 @@
               </ul>
             </li>
             @endpermission
+            @permission('employee-list') 
+          <li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>Performance Review</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+              </a>
+              <ul class="treeview-menu">
+                 
+                <li><a href="{{ url(route('review.show.form')) }}">Review Form</a></li>
+               
+               
+               
+              </ul>
+            </li>
+            @endpermission
+
+            @permission('employee-list') 
+          <li class="treeview">
+              <a href="#"><i class="fa fa-link"></i> <span>Dynamic Form</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                  </span>
+              </a>
+              <ul class="treeview-menu">
+                 
+                <li><a href="{{ url(route('form.index')) }}">View List</a></li>
+               
+                <li><a href="{{ url(route('form.create')) }}">Add New</a></li>
+               
+              </ul>
+            </li>
+            @endpermission
+
         @permission('role-list')   
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Roles</span>

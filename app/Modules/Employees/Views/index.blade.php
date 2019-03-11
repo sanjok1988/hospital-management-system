@@ -8,7 +8,7 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
-<table class="table table-bordered table-striped table-sm">
+<table id="table" class="table table-bordered table-striped table-sm">
     <thead>
       <tr>
         <th>Full Name</th>                
