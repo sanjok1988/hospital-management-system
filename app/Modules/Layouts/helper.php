@@ -1,0 +1,5 @@
+<?php
+
+/**
+ *	Layouts Helper  
+ */
