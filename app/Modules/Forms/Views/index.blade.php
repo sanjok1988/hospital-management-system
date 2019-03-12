@@ -11,8 +11,8 @@
                     <thead>
                     <tr>
                         <th>{{ trans('words.id')}}</th>
-                        <th>{{ trans('words.name')}}</th>
-                        <th>{{ trans('words.details')}}</th>
+                        <th>{{ trans('words.questionnaire')}}</th>
+                        <th>{{ trans('words.type')}}</th>
                         <th>{{ trans('words.status')}}</th>
                         <th>{{ trans('words.actions')}}</th>
                     </tr>
@@ -22,9 +22,9 @@
                         @foreach($data as $value)
                       <tr>
                         <td>{{$value->id }}</td>
-                        <td>{{$value->name }}</td>
+                        <td>{{$value->question }}</td>
                 
-                        <td>{{ $value->detail }}</td>
+                        <td>{{ $value->ques_type }}</td>
                        
                         <td>
                           <span class="badge badge-success" >{{ $value->deleted_at ? "InActive" : "Active" }}</span>

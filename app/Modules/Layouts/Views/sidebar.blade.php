@@ -69,7 +69,7 @@
               </ul>
             </li>
             @endpermission
-            @permission('employee-list') 
+           
           <li class="treeview">
               <a href="#"><i class="fa fa-link"></i> <span>Performance Review</span>
                 <span class="pull-right-container">
@@ -84,7 +84,7 @@
                
               </ul>
             </li>
-            @endpermission
+          
 
             @permission('employee-list') 
           <li class="treeview">
@@ -95,9 +95,10 @@
               </a>
               <ul class="treeview-menu">
                  
-                <li><a href="{{ url(route('form.index')) }}">View List</a></li>
+                <li><a href="{{ url(route('questionnaire.index')) }}">View Questionnaire List</a></li>
                
-                <li><a href="{{ url(route('form.create')) }}">Add New</a></li>
+                <li><a href="{{ url(route('questionnaire.create')) }}">Create Questionnaire</a></li>
+                <li><a href="{{ url(route('form.create')) }}">Build Form</a></li>
                
               </ul>
             </li>

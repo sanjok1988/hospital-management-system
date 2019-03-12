@@ -3,19 +3,26 @@
 namespace App\Modules\Forms\Controllers;
 
 use Illuminate\Http\Request;
+use App\Modules\Forms\Models\Forms;
 use App\Http\Controllers\Controller;
 
 class FormsController extends Controller
 {
+    private $page = "form";
+    public function __construct(Forms $forms){
+        $this->forms = $forms;
+    }
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function questionList()
     {
-        return view("Forms::index");
+        $page = "questionnaire";
+        $data = $this->forms->paginate(10);
+        return view("Forms::index", compact('page','data'));
     }
 
     /**
@@ -23,9 +30,11 @@ class FormsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createQuestionnaire()
     {
-        //
+        $page = "questionnaire";
+        $action = "create";
+        return view('Forms::create_questionnaire', compact('page','action'));
     }
 
     /**
@@ -34,9 +43,17 @@ class FormsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeQuestionnaire(Request $request)
     {
-        //
+        $data = $request->only('question','ques_type');
+        if($request->has('id')){
+            $find = $this->forms->find($id);
+            $find->update($data);
+        }else{
+            $this->forms->create($data);
+        }
+        
+        return redirect(route('questionnaire.create'));
     }
 
     /**
@@ -47,7 +64,7 @@ class FormsController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -56,9 +73,12 @@ class FormsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editQuestionnaire($id)
     {
-        //
+        $page = "questionnaire";
+        $action = "edit";
+        $data = $this->forms->find($id);
+        return view('Forms::create_questionnaire', compact('page','action','data'));
     }
 
     /**

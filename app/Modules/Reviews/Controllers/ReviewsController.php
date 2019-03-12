@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Modules\Reviews\Models\Reviews;
 use App\Modules\Reviews\Models\ReviewList;
+use App\Modules\Reviews\Models\ReviewResult;
 
 class ReviewsController extends Controller
 {
@@ -19,7 +20,8 @@ class ReviewsController extends Controller
     }
 
     public function showForm(){
-        $form = $this->reviewList->where('employee_id', Auth::user()->id)->first();
+        $form = $this->reviewList->where('employee_id', Auth::user()->id)->whereStatus(NULL)->first();
+       
         if($form){
             return view("Reviews::".$form->form_name);
         }else{
@@ -37,6 +39,23 @@ class ReviewsController extends Controller
     public function createTemplate(Request $request)
     {
         $this->template->create($request->all());
+    }
+
+    public function saveReview(Request $request){
+        $data = $request->except('_token','submit','employee_id');
+        
+        $id = $request->employee_id;
+   
+        $result = [];
+        foreach($data as $key=>$value){
+    
+            $result[] = ['employee_id'=>$id, 'field_name'=>$key, 'point'=>$value];
+        }
+       
+        ReviewResult::insert($result);
+        ReviewList::where('employee_id', Auth::user()->id)->update(['status'=>'completed']);
+        return "thank you for review";
+
     }
 
     /**

@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Modules\Employees\Models\Employees;
+use App\Modules\Reviews\Models\ReviewResult;
 
 class EmployeesController extends Controller
 {
@@ -177,6 +178,8 @@ class EmployeesController extends Controller
     public function profile(){
         $page = $this->page;
         $action = "show";
+
+        $rating = ReviewResult::where('employee_id', Employees::getIdByEmail(Auth::user()->email))->get();
         
         $data = $this->model->where('work_email', Auth::user()->email)->first();
         return view('Employees::profile', compact('data','page','action'));

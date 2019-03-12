@@ -7,6 +7,7 @@ return [
     "employees" => "Employees",
     "users" => "Users",
     "roles" => "Roles",
+    "questionnaire"=>"Questionnaire",
     //common table cloumns
     "id" => "ID",
     "sn" => "SN.",
@@ -15,6 +16,7 @@ return [
     "name" => "Name",
     "details" => "Details",
     "description" => "Decription",
+    "type"=>"Type",
 
     //message
     "success"=>"Success",

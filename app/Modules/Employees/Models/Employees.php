@@ -19,5 +19,9 @@ class Employees extends Model {
        return Self::select('email')->where('id', $id)->first()->email;
     }
 
+    public static function getIdByEmail($email){
+        return Self::select('id')->where('work_email', $email)->first()->id;
+     }
+
 
 }
