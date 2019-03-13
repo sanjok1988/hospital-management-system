@@ -79,6 +79,7 @@
               <ul class="treeview-menu">
                  
                 <li><a href="{{ url(route('review.show.form')) }}">Review Form</a></li>
+                <li><a href="{{ url(route('review.select.candidate')) }}">Select Candidate For Review</a></li>
                
                
                
@@ -99,6 +100,7 @@
                
                 <li><a href="{{ url(route('questionnaire.create')) }}">Create Questionnaire</a></li>
                 <li><a href="{{ url(route('form.create')) }}">Build Form</a></li>
+                <li><a href="{{ url(route('form.index')) }}">Form List</a></li>
                
               </ul>
             </li>

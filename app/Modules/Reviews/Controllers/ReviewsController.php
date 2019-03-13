@@ -3,20 +3,34 @@
 namespace App\Modules\Reviews\Controllers;
 
 use Illuminate\Http\Request;
+use App\Modules\Forms\Models\Forms;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Modules\Reviews\Models\Reviews;
 use App\Modules\Reviews\Models\ReviewList;
+use App\Modules\Employees\Models\Employees;
 use App\Modules\Reviews\Models\ReviewResult;
 
 class ReviewsController extends Controller
 {
     protected $review;
 
-    public function __construct(Reviews $review, ReviewList $reviewList)
+    public function __construct(Reviews $review, ReviewList $reviewList, Employees $employees, Forms $form)
     {
         $this->review = $review;
         $this->reviewList = $reviewList;
+        $this->employees = $employees;
+        $this->form = $form;
+    }
+
+    public function selectCandidate(){
+        $page = "select.candidate";
+        $action = "create";
+        $data = $this->employees->get();
+        $forms = $this->form->get();
+       
+        return view('Reviews::select_candidate',compact('data','forms', 'page','action'));
+
     }
 
     public function showForm(){

@@ -2,6 +2,7 @@
 @section('content')
 <?php
 $flag = false;
+
 if(isset($action) && $action == 'edit')
 {
     $flag = true;
@@ -10,7 +11,7 @@ $ques_type = ['0'=>'Job Knowledge','1'=>'Planning and Problem Solving'];
 ?>
 <div class="box-header">
    @if(isset($page))
-   <h3 class="box-title">{{ ucfirst(trans('words.'.$page)) }} Create</h3>
+<h3 class="box-title">{{ ucfirst(trans('words.'.$page)) }} {{ strtoupper($action)}}</h3>
    @endif
    <a class="btn btn-success btn-sm pull-right" title="List" href="{{ route($page.'.index')}}" ><i class="fa fa-list"></i> List</a>
 </div>

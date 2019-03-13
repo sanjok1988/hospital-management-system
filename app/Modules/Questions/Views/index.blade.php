@@ -11,8 +11,8 @@
                     <thead>
                     <tr>
                         <th>{{ trans('words.id')}}</th>
-                        <th>{{ trans('words.name')}}</th>
-                        <th>{{ trans('words.description')}}</th>
+                        <th>{{ trans('words.questionnaire')}}</th>
+                        <th>{{ trans('words.type')}}</th>
                         <th>{{ trans('words.status')}}</th>
                         <th>{{ trans('words.actions')}}</th>
                     </tr>
@@ -22,15 +22,14 @@
                         @foreach($data as $value)
                       <tr>
                         <td>{{$value->id }}</td>
-                        <td>{{$value->name }}</td>
+                        <td>{{$value->question }}</td>
                 
-                        <td>{{ $value->description }}</td>
+                        <td>{{ $value->ques_type }}</td>
                        
                         <td>
                           <span class="badge badge-success" >{{ $value->deleted_at ? "InActive" : "Active" }}</span>
                         </td>
                         <td>
-                            <a href="{{ route('form.create', ['id'=>$value->id])}}" class="btn btn-outline-success" alt="@lang('words.edit')"> <i class="fa fa-file"></i></a>
                             <a href="{{ route($page.'.edit', [$value->id])}}" class="btn btn-outline-primary" alt="@lang('words.edit')"> <i class="fa fa-pencil"></i></a>
                 
                             <a href="{{ route($page.'.delete', $value->id)}}" class="btn btn-outline-danger" alt="@lang('words.delete')"><i class="fa fa-trash"></i></a>

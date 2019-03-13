@@ -5,102 +5,72 @@ namespace App\Modules\Forms\Controllers;
 use Illuminate\Http\Request;
 use App\Modules\Forms\Models\Forms;
 use App\Http\Controllers\Controller;
+use App\Modules\Questions\Models\Questions;
+use App\Modules\Forms\Models\GeneratedForms;
 
 class FormsController extends Controller
 {
-    private $page = "form";
-    public function __construct(Forms $forms){
-        $this->forms = $forms;
+    public function __construct(Questions $questions, GeneratedForms $genForm, Forms $form)
+    {
+        $this->questions = $questions;
+        $this->genForm = $genForm;
+        $this->form = $form;
+    }
+
+    public function index()
+    {
+        $page = "form";
+        $data = $this->form->paginate(10);
+        return view('Forms::index',compact('data','page'));
     }
 
     /**
-     * Display a listing of the resource.
+     * Create and edit from same form
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
-    public function questionList()
+    public function create(Request $request)
     {
-        $page = "questionnaire";
-        $data = $this->forms->paginate(10);
-        return view("Forms::index", compact('page','data'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createQuestionnaire()
-    {
-        $page = "questionnaire";
-        $action = "create";
-        return view('Forms::create_questionnaire', compact('page','action'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storeQuestionnaire(Request $request)
-    {
-        $data = $request->only('question','ques_type');
+        $form = '';
+        $ques = [];
+        $page = "form";
         if($request->has('id')){
-            $find = $this->forms->find($id);
-            $find->update($data);
+            $action = "edit";
+            $form = $this->form->find($request->id);
+            $questions = $this->genForm->select('question_id')->where('form_id', $request->id)->get();
+            if(count($questions)>0){
+                foreach($questions as $v){
+                    $ques[] = $v->question_id;
+                }
+            }
+            
         }else{
-            $this->forms->create($data);
+            $action = 'create';
+            
         }
+        $data = $this->questions->orderBy('id','DESC')->paginate(10);
         
-        return redirect(route('questionnaire.create'));
+        $forms = $this->form->get();
+        return view("Forms::create", compact('form','ques','data','forms','page', 'action'));
     }
 
     /**
-     * Display the specified resource.
+     * Store and Update
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return void
      */
-    public function show($id)
+    public function store(Request $request)
     {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function editQuestionnaire($id)
-    {
-        $page = "questionnaire";
-        $action = "edit";
-        $data = $this->forms->find($id);
-        return view('Forms::create_questionnaire', compact('page','action','data'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $questions = $request->only('question_id');
+        $q = [];
+        foreach($questions['question_id'] as $key=>$value){
+            
+            $q[] = ['question_id'=>$value, 'form_id'=>$request->form_id];
+        }
+     
+        $this->genForm->insert($q);
+        return redirect(route('form.index'));
     }
 }

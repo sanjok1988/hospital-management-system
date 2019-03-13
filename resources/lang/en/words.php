@@ -8,6 +8,7 @@ return [
     "users" => "Users",
     "roles" => "Roles",
     "questionnaire"=>"Questionnaire",
+    "form"=>"Form",
     //common table cloumns
     "id" => "ID",
     "sn" => "SN.",
