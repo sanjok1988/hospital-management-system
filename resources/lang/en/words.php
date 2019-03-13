@@ -19,6 +19,10 @@ return [
     "description" => "Decription",
     "type"=>"Type",
 
+    //employees table
+    "department"=>"Department",
+    "job_title"=>"Job Title",
+
     //message
     "success"=>"Success",
     "failed"=>"Failed",

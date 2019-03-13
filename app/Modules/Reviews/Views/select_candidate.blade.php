@@ -53,7 +53,8 @@ $ques_type = ['0'=>'Job Knowledge','1'=>'Planning and Problem Solving'];
                             
                             <th style="width:5px"><input type="checkbox" ></th>
                             <th>{{ trans('words.name')}}</th>
-                            <th>{{ trans('words.phone')}}</th>
+                            <th>{{ trans('words.department')}}</th>
+                            <th>{{ trans('words.job_title')}}</th>
                             
                         </tr>
                         </thead>
@@ -68,7 +69,8 @@ $ques_type = ['0'=>'Job Knowledge','1'=>'Planning and Problem Solving'];
                                     <label>{{$value->first_name }} {{$value->last_name }}</label>
                             </div>
                             </td>
-                            <td>{{$value->phone }}</td>
+                            <td>{{$value->department }}</td>
+                            <td>{{$value->job_title }}</td>
                     
                           </tr>    
                           @endforeach    

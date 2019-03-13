@@ -48,8 +48,9 @@ class QuestionsController extends Controller
     {
         $data = $request->only('question','ques_type');
         if($request->has('id')){
-            $find = $this->questions->find($id);
+            $find = $this->questions->find($request->id);
             $find->update($data);
+            return redirect(route('questionnaire.index'));
         }else{
             $this->questions->create($data);
         }
@@ -57,16 +58,6 @@ class QuestionsController extends Controller
         return redirect(route('questionnaire.create'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -82,18 +73,7 @@ class QuestionsController extends Controller
         return view('Questions::create_questionnaire', compact('page','action','data'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
+    
     /**
      * Remove the specified resource from storage.
      *
