@@ -22,7 +22,7 @@ $ques_type = ['0'=>'Job Knowledge','1'=>'Planning and Problem Solving'];
 <!-- /.box-header -->
 <div class="box-body">
    <!-- form start -->
-   <form role="form" method="POST" action="{{ route('form.store')}}">
+   <form role="form" method="POST" action="{{ route('review.store.candidate')}}">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
       @if($flag)
       <input type="hidden" name="id" value="{{ $form->id }}">

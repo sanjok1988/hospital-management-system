@@ -39,7 +39,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.common.dev.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.8/vue.js"></script>
 
-
+<style>
+  .active{
+    display: block;
+    /* background-color: #3c8dbc; */
+  }
+  </style>
 @yield('style')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">

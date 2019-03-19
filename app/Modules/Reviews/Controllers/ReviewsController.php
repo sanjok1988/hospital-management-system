@@ -3,10 +3,12 @@
 namespace App\Modules\Reviews\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Modules\Forms\Models\Forms;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Modules\Reviews\Models\Reviews;
+use Illuminate\Support\Facades\Session;
 use App\Modules\Reviews\Models\ReviewList;
 use App\Modules\Employees\Models\Employees;
 use App\Modules\Reviews\Models\ReviewResult;
@@ -93,5 +95,25 @@ class ReviewsController extends Controller
         foreach($request->employee_ids as $employee_id){
             $this->review->create(['employee_id'=> $employee_id, 'temp_id'=>$request->temp_id]);
         }
+    }
+
+    public function storeCandidate(Request $request){
+       
+        $employees = $request->employee_id;
+        $fid = $request->form_id;
+        $data = [];
+        foreach($employees as $id){
+            $data[] = ['employee_id'=> $id, 'form_name'=>'', 'form_id'=>$fid];
+        }
+        $this->reviewList->insert($data);
+      
+        Session::flash('message', "success");
+        return redirect(route('review.candidates'));
+    }
+
+    public function getCandidates(){
+        $page = "candidates";
+        $data = DB::table('review_list as r')->select('e.id', 'e.first_name', 'e.last_name')->join('employees as e', 'e.id', '=', 'r.employee_id')->get();
+        return view('Reviews::candidates', compact('data', 'page'));
     }
 }

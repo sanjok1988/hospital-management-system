@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row">
         
-        <div class="col-md-10 offset-md-1">
+        <div class="col-md-12">
             <div class="row">
-                <div class="col-md-4">                
+                <div class="col-md-3">                
                     <div class="card">
                         <div class="card-body text-center">
                             <h5>Total Attendance</h5>
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-body text-center">
                             <h5>Total Leave</h5>
@@ -22,20 +22,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-body text-center">
                             <h5>Total Days Of Month</h5>
                             <h3>{{ \Carbon\Carbon::parse($dt->format('Y-m-d'))->daysInMonth }}</h3>
-                        <p>{{ $_SERVER['REMOTE_ADDR'] }}</p>{{getUserIP()}}
+                        
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5>Other Info</h5>
+                               
+                            <p>{{ $_SERVER['REMOTE_ADDR'] }}</p>{{getUserIP()}}
+                            </div>
+                        </div>
+                    </div>
             </div>
 
             
             <div class="card">
-                <div class="card-header">Attendance Board<span class="pull-right"><b>Today:</b> {{ \Carbon\Carbon::now()->toDayDateTimeString() }}</span></div>
+                <div class="card-header" style="background-color:#eeee;padding:15px;margin:15px;font:bold;font-size:16px">Attendance Board<span class="pull-right"><b>Today:</b> {{ \Carbon\Carbon::now()->toDayDateTimeString() }}</span></div>
 
                 <div class="card-body">
                     <center>

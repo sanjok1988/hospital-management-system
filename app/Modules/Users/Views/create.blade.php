@@ -70,9 +70,10 @@ if(isset($action) && $action == 'assignRole')
                                 @if($assignRole)
                                 <div class="form-group has-feedback {{ $errors->has('role_id') ? ' has-error' : '' }}">
                                     <label> Assign Role</label>
+                                    {{ dd($data) }}
                                     <select>
                                         @foreach($roles as $role)
-                                            <option class="form-control" name="role_id" value="{{ $role->id }}">{{ $role->name }}</option>
+                                            <option class="form-control" name="role_id" value="{{ $role->id }}" {{($assignRole && $data->role_id == $role->id)?"selected":''}}>{{ $role->name }}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('role_id'))

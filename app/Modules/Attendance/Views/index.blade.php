@@ -6,7 +6,7 @@
         
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-4">                
+                <div class="col-md-3">                
                     <div class="card">
                         <div class="card-body text-center">
                             <h5>Total Attendance</h5>
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-body text-center">
                             <h5>Total Leave</h5>
@@ -22,15 +22,24 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card-body text-center">
                             <h5>Total Days Of Month</h5>
                             <h3>{{ \Carbon\Carbon::parse($dt->format('Y-m-d'))->daysInMonth }}</h3>
-                        <p>{{ $_SERVER['REMOTE_ADDR'] }}</p>{{getUserIP()}}
+                       
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5>Other Info</h5>
+                                
+                            <p>{{ $_SERVER['REMOTE_ADDR'] }}</p>{{getUserIP()}}
+                            </div>
+                        </div>
+                    </div>
             </div>
 
             
@@ -42,6 +51,8 @@
                         <thead>
                           <tr>
                             <th scope="col">#</th>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Department</th>
                             <th scope="col">Sign In</th>
                             <th scope="col">Sign Out</th>
                             <th scope="col">Status</th>
@@ -55,6 +66,8 @@
                             <?php $i++; ?>
                           <tr>
                             <th scope="row">{{ $i }}</th>
+                            <td>{{ $value->first_name ." ". $value->last_name }}</td>
+                            <td>{{ $value->department }}</td>
                           <td>{{ $value->time_in }}</td>
                             <td>{{ ($value->time_out == $value->time_in)?"ready to sign out":$value->time_out }}</td>
                             <?php ?>

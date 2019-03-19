@@ -63,6 +63,7 @@ class FormsController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         $questions = $request->only('question_id');
         $q = [];
         foreach($questions['question_id'] as $key=>$value){

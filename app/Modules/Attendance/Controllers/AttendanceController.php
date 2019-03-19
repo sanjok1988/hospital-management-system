@@ -24,7 +24,7 @@ class AttendanceController extends Controller
         $now = Carbon::now();
         
         $data = $this->model
-        ->select('e.first_name','e.middle_name', 'e.last_name', 'attendance.*')
+        ->select('e.first_name','e.middle_name', 'e.last_name', 'e.department', 'attendance.*')
         ->join('employees as e', 'e.id', '=', 'attendance.employee_id')
         ->whereDay('attendance.created_at', $now->day)->whereYear('attendance.created_at', $now->year)->paginate(10);       
         
@@ -124,7 +124,7 @@ class AttendanceController extends Controller
             $request->session()->flash('message', "You have already sign out. Please sign in tomorrow");
             else
             $request->session()->flash('message', "You have already sign in. Please sign out if you want to leave!");
-            return redirect(route('attendance.index')); 
+            return redirect(route('attendance.my')); 
         }
 
         if($uid){
@@ -170,11 +170,11 @@ class AttendanceController extends Controller
                 //if already sign out then do not allow to signout again
                 if($find->time_in != $find->time_out) {
                     $request->session()->flash('message', "Already Sign out. You cannot sign out again. Thank you!");
-                    return redirect(route('attendance.index'));
+                    return redirect(route('attendance.my'));
                 }
                 if($find->update($data)){
                     $request->session()->flash('message', "successfully Recorded. Thank you!");
-                    return redirect(route('attendance.index'));
+                    return redirect(route('attendance.my'));
                 } else {
                     return "signout process failed";
                 }
