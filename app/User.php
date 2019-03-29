@@ -30,7 +30,7 @@ class User extends Authenticatable
     ];
 
     public static function createUserAccount($data){
-        $id = Self::insertGetId($data);
-        return Self::find($id);
+        $user = Self::create($data);
+        return $user->id;
     }
 }

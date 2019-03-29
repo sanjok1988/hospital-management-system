@@ -16,6 +16,7 @@
         <th>Mobile</th>
         <th>Department</th>
         <th>Private Email</th>
+        <th>Work Email</th>
         <th>Joined Date</th>                
         <th>Status</th>
         <th>Actions</th>
@@ -31,6 +32,7 @@
         <td>{{ $value->mobile }}</td>
         <td>{{ $value->department }}</td>
         <td>{{ $value->private_email }}</td>
+        <td>{{ $value->work_email }}</td>
         <td>{{ $value->joined_date }}</td>
         <td>
           <span class="badge badge-success" >{{ $value->deleted_at ? "InActive" : "Active" }}</span>

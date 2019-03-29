@@ -32,14 +32,29 @@ $ques_type = ['0'=>'Job Knowledge','1'=>'Planning and Problem Solving'];
           <div class="row">
                 <div class="col-md-12">
                         <div class="form-group">
-                        <label for="exampleFormControlSelect1">Types of Employee Performance Evaluations</label><br>
-                        <select name="form_id" class="form-control" id="exampleFormControlSelect1">
+                        <label for="exampleFormControlSelect1">Form</label><br>
+                        {{-- <select name="form_id" class="form-control" id="exampleFormControlSelect1">
                             @foreach($forms as $value)
                             
-                        <option value="{{ strtolower($value->id) }}" {{ ($flag && $form->id == $value->id)?'selected':'' }} >{{ $value->name }}</option>
+                        <option value="{{ strtolower($value->id) }}" {{ ($flag && $form->id == $value->id)?'selected':'' }} {{($flag)?"disabled":""}}>{{ $value->name }}</option>
         
                             @endforeach
-                        </select>
+                        </select> --}}
+
+                        <input name="name" type="text" class="form-control" value="{{ ($flag)?$form->name:''}}"/>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Description</label><br>
+                        <textarea type="text" name="description" class="form-control">{{ ($flag)?$form->description:''}}</textarea>
+                        </div>
+                         <div class="form-group">
+                            <label for="exampleFormControlSelect1">Review Start Date</label><br>
+                            <input type="date" name="start_date" class="form-control" value="{{ ($flag)?$form->start_date:''}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Review End Date</label><br>
+                            <input type="date" name="end_date" class="form-control" value="{{ ($flag)?$form->end_date:''}}">
                         </div>
                         
                     </div>

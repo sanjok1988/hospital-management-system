@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Modules\Options\Models\Options;
+use App\Modules\Employees\Models\Employees;
 use App\Modules\Attendance\Models\Attendance;
 
 
@@ -31,18 +32,22 @@ class AttendanceController extends Controller
         return view("Attendance::index", compact('data'));
     }
 
+    /**
+     * Show individual attendance of the year
+     *
+     * @return void
+     */
     public function myattendance(){
         $now = Carbon::now();
-        
+        $emp= Employees::select('id')->where('work_email', Auth::user()->email)->first();
+
         $data = $this->model
         ->select('e.first_name','e.middle_name', 'e.last_name', 'attendance.*')
-        ->join('employees as e', 'e.id', '=', 'attendance.employee_id')
-        ->whereDay('attendance.created_at', $now->day)
+        ->join('employees as e', 'e.id', '=', 'attendance.employee_id')    
         ->whereYear('attendance.created_at', $now->year)
-        ->where('employee_id', Auth::user()->id)
+        ->where('employee_id', $emp->id)
         ->paginate(10);
-        
-        
+  
         return view("Attendance::my", compact('data'));
     }
 
@@ -117,7 +122,9 @@ class AttendanceController extends Controller
      * @return void
      */
     public function signIn(Request $request){
-        $uid = Auth::user()->id;
+    
+        
+        $emp= Employees::select('id')->where('work_email', Auth::user()->email)->first();
 
         if(Attendance::get_signed_id()) {
             if(Attendance::is_signout())
@@ -130,9 +137,11 @@ class AttendanceController extends Controller
         if($uid){
             $current_time = Carbon::now()->toDateTimeString();
             $data = [
-                'employee_id' => $uid,
+                'employee_id' => $emp->id,
                 'time_in' => $current_time,
-                'time_out' => $current_time
+                'time_out' => $current_time,
+                'ip'=>$_SERVER['REMOTE_ADDR']
+
             ];
             $cur_time = (Carbon::createFromFormat('Y-m-d H:i:s', $current_time)->format('H:i:s'));
             $att = getStatus($cur_time, Options::getOption("sign_in_time"));
@@ -164,7 +173,8 @@ class AttendanceController extends Controller
                 $current_time = Carbon::now()->toDateTimeString();
                 $data = [
                     'employee_id' => $uid,               
-                    'time_out' => $current_time
+                    'time_out' => $current_time,
+                    'ip'=>$_SERVER['REMOTE_ADDR']
                 ];
                 $find = $this->model->find($sid);
                 //if already sign out then do not allow to signout again

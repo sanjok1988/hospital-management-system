@@ -9,6 +9,7 @@ return [
     "roles" => "Roles",
     "questionnaire"=>"Questionnaire",
     "form"=>"Form",
+    'result' => 'Result',
     //common table cloumns
     "id" => "ID",
     "sn" => "SN.",
@@ -22,6 +23,9 @@ return [
     //employees table
     "department"=>"Department",
     "job_title"=>"Job Title",
+
+    //review
+    'points' => 'points',
 
     //message
     "success"=>"Success",

@@ -39,34 +39,7 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 
                                 <input type="hidden" name="employee_id" value="{{ Auth::user()->id }}">
-                                <table id="example" class="table table-bordered table-hover " >
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Poor</th>
-                                            <th>Average</th>
-                                            <th>Good</th>
-                                            <th>Excellent</th>
-                                            <th>Outstanding</th>
-                                            <th>N/A</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach($data as $key=>$value)
-                                          <tr>
-                                            <td style="text-align:left">{{ $value }}</td>
-                                          <td><input type="radio" name="{{$key}}" value="1"></td>
-                                    
-                                            <td><input type="radio" name="{{$key}}" value="2"></td>
-                                           
-                                            <td><input type="radio" name="{{$key}}" value="3"></td>
-                                            <td><input type="radio" name="{{$key}}" value="4"></td>
-                                            <td><input type="radio" name="{{$key}}" value="5"></td>
-                                            <td><input type="radio" name="{{$key}}" value="0" checked></td>
-                                          </tr>    
-                                             @endforeach
-                                        </tbody>
-                                    </table>
+                                
 
                                     <h4>Section II: Planning and Problem Solving
                                         </h4>
@@ -83,17 +56,14 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($data1 as $key=>$value)
+                                                @foreach($questions as $key=>$value)
                                               <tr>
-                                                <td style="text-align:left">{{ $value }}</td>
-                                                <td><input type="radio" name="{{$key}}" value="1"></td>
-                                        
-                                                <td><input type="radio" name="{{$key}}" value="2"></td>
-                                               
-                                                <td><input type="radio" name="{{$key}}" value="3"></td>
-                                                <td><input type="radio" name="{{$key}}" value="4"></td>
-                                                <td><input type="radio" name="{{$key}}" value="5"></td>
-                                                <td><input type="radio" name="{{$key}}" value="0" checked></td>
+                                                <td style="text-align:left">{{ $value->question }}</td>
+                                                
+                                                @for($i=0; $i<=5; $i++)
+                                                <td><input type="radio" name="{{'qid_'.$value->question_id}}" value="{{$i}}" {{($i==0)?"checked":''}}></td>
+                                                @endfor
+                                                
                                               </tr>    
                                                  @endforeach
                                             </tbody>

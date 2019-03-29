@@ -10,10 +10,10 @@
                 <table class="table table-bordered table-hover " >
                     <thead>
                     <tr>
-                        <th>{{ trans('words.id')}}</th>
+                       
                         <th>{{ trans('words.name')}}</th>
-                        <th>{{ trans('words.details')}}</th>
-                        <th>{{ trans('words.status')}}</th>
+                        <th>{{ trans('words.points')}}</th>
+                       
                         <th>{{ trans('words.actions')}}</th>
                     </tr>
                     </thead>
@@ -21,17 +21,16 @@
                         @if(count($data)>0)
                         @foreach($data as $value)
                       <tr>
-                        <td>{{$value->id }}</td>
-                        <td>{{$value->first_name }}</td>
+                        
+                        <td>{{$value->first_name.  " ". $value->last_name }}</td>
                 
-                        <td>{{ $value->last_name }}</td>
+                        <td>{{ $value->points }}</td>
                        
+                        
                         <td>
-                          {{-- <span class="badge badge-success" >{{ $value->deleted_at ? "InActive" : "Active" }}</span> --}}
-                        </td>
-                        <td>
-                            <a href="{{ route('review.show.form', [$value->id])}}" class="btn btn-outline-primary" alt="Perform Review"> <i class="fa fa-pencil"></i>Review</a>               
-                          
+                            <a href="{{ route('employees.edit', [$value->employee_id, 'action'=>'show'])}}" class="btn btn-outline-primary" alt="view profile"> <i class="fa fa-eye"> view profile</i></a>
+                
+                            {{-- <a href="{{ route($page.'.delete', $value->id)}}" class="btn btn-outline-danger" alt="@lang('words.delete')"><i class="fa fa-trash"></i></a> --}}
                         </td>
                       </tr>    
                       @endforeach    

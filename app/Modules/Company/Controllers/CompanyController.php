@@ -108,11 +108,11 @@ class CompanyController extends Controller
         //$company['image'] = $this->upload($request->file('image'));
 
         if ($this->model->update($id, $company)) {
-            $response = "success";
+            Session::flash('message', 'success');
         } else {
-            $response = "failed";
+            Session::flash('message', 'failed');
         }
-        return response()->json($response);
+        return redirect(route('company.index'));
     }
 
       public function show($id)
@@ -125,11 +125,12 @@ class CompanyController extends Controller
     //deleting the table
     public function destroy($id)
     {
-        if ($this->model->delete($id)) {
-            $response = "success";
+        if ($data = $this->model->find($id)) {
+            $data->delete();
+            Session::flash('message', 'success');
         } else {
-            $response = "failed";
+            Session::flash('message', 'failed');
         }
-        return response()->json($response);
+        return redirect(route('company.index'));
     }
 }

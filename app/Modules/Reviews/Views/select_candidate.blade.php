@@ -32,7 +32,7 @@ $ques_type = ['0'=>'Job Knowledge','1'=>'Planning and Problem Solving'];
           <div class="row">
                 <div class="col-md-12">
                         <div class="form-group">
-                        <label for="exampleFormControlSelect1">Types of Employee Performance Evaluations</label><br>
+                        <label for="exampleFormControlSelect1">Choose Review Form</label><br>
                         <select name="form_id" class="form-control" id="exampleFormControlSelect1">
                             @foreach($forms as $value)
                             
@@ -41,6 +41,7 @@ $ques_type = ['0'=>'Job Knowledge','1'=>'Planning and Problem Solving'];
                             @endforeach
                         </select>
                         </div>
+                       
                         
                     </div>
             <div class="col-md-12">
@@ -55,6 +56,7 @@ $ques_type = ['0'=>'Job Knowledge','1'=>'Planning and Problem Solving'];
                             <th>{{ trans('words.name')}}</th>
                             <th>{{ trans('words.department')}}</th>
                             <th>{{ trans('words.job_title')}}</th>
+                            <th>Select Reviewer</th>
                             
                         </tr>
                         </thead>
@@ -71,7 +73,16 @@ $ques_type = ['0'=>'Job Knowledge','1'=>'Planning and Problem Solving'];
                             </td>
                             <td>{{$value->department }}</td>
                             <td>{{$value->job_title }}</td>
-                    
+                            <td>
+                                <select name="reviewer_id[]" >
+                                    @if($users)
+                                    @foreach($users as $user)
+                                <option value="{{ $user->id }}" {{ ($flag && ($value->reviewer_id == $user->id))?'selected':'' }}>{{ $user->name }}</option>
+                                    @endforeach
+                                    @endif
+                                </select>
+
+                            </td>
                           </tr>    
                           @endforeach    
                           @endif      

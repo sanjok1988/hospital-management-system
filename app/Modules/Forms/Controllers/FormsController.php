@@ -5,6 +5,7 @@ namespace App\Modules\Forms\Controllers;
 use Illuminate\Http\Request;
 use App\Modules\Forms\Models\Forms;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use App\Modules\Questions\Models\Questions;
 use App\Modules\Forms\Models\GeneratedForms;
 
@@ -51,8 +52,8 @@ class FormsController extends Controller
         }
         $data = $this->questions->orderBy('id','DESC')->paginate(10);
         
-        $forms = $this->form->get();
-        return view("Forms::create", compact('form','ques','data','forms','page', 'action'));
+       
+        return view("Forms::create", compact('form','ques','data','page', 'action'));
     }
 
     /**
@@ -63,12 +64,23 @@ class FormsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $validator = Validator::make($request->all(),
+        [
+            'name' => 'required',
+            'start_date'=>'required',
+            'end_date'=>'required'
+            
+        ]);
+        if($validator->fails()){
+            return back()->withErrors()->withInput();
+        }
+        //$name = Forms::getNameById($request->form_id);
+        $form = $this->form->create($request->only('name','description','start_date', 'end_date'));
         $questions = $request->only('question_id');
         $q = [];
         foreach($questions['question_id'] as $key=>$value){
             
-            $q[] = ['question_id'=>$value, 'form_id'=>$request->form_id];
+            $q[] = ['question_id'=>$value, 'form_id'=>$form->id];
         }
      
         $this->genForm->insert($q);

@@ -39,7 +39,7 @@ class QuestionsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created questionnaire in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

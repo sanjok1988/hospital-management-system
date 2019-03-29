@@ -70,6 +70,7 @@
                      </div>
             
          </div>
+         <h4 class="pull-right" style="margin-right:25px">For Official Purpose Only</h4>
          <div class="col-md-6">
             
             <div class="form-group">
@@ -107,9 +108,10 @@
                <input type="text" class="form-control" name="supervisor" placeholder="Supervisor" value="{{ ($flag)?$data->supervisor:'' }}" disabled>
             </div>
             <div class="form-group">
-               <label for="">notes</label>
-               <input type="text" class="form-control" name="notes" placeholder="notes" value="{{ ($flag)?$data->notes:'' }}">
-            </div>
+                  <label for="">Employee Status</label>
+                  <input type="text" class="form-control" name="employee_status" placeholder="Employee Status" value="{{ ($flag)?$data->employee_status:'' }}" disabled>
+               </div>
+            
          </div>
         </div>
         <div class="col-md-12">
@@ -152,18 +154,18 @@
                         <label for="">Country</label>
                         <input type="text" class="form-control" name="country" placeholder="Country" value="{{ ($flag)?$data->country:'' }}">
                      </div>
-                     <div class="form-group">
+                     {{-- <div class="form-group">
                         <label for="">Province</label>
                         <input type="text" class="form-control" name="province" placeholder="Province" value="{{ ($flag)?$data->province:'' }}">
-                     </div>
-                     <div class="form-group">
+                     </div> --}}
+                     {{-- <div class="form-group">
                         <label for="">Postal Code</label>
                         <input type="text" class="form-control" name="postal_code" placeholder="Postal Code" value="{{ ($flag)?$data->postal_code:'' }}">
-                     </div>
+                     </div> --}}
                      <div class="form-group">
-                            <label for="">Employee Status</label>
-                            <input type="text" class="form-control" name="employee_status" placeholder="Employee Status" value="{{ ($flag)?$data->employee_status:'' }}">
-                         </div>
+                           <label for="">notes</label>
+                           <input type="text" class="form-control" name="notes" placeholder="notes" value="{{ ($flag)?$data->notes:'' }}">
+                        </div>
                      
         </div>
          <!-- /.box-body -->

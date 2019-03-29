@@ -56,6 +56,7 @@
                             <th scope="col">Sign In</th>
                             <th scope="col">Sign Out</th>
                             <th scope="col">Status</th>
+                            <th scope="col">IP Address</th>
                             <th scope="col">Note</th>
                           </tr>
                         </thead>
@@ -72,6 +73,7 @@
                             <td>{{ ($value->time_out == $value->time_in)?"ready to sign out":$value->time_out }}</td>
                             <?php ?>
                           <td>{{ $value->status }}</td>
+                          <td>{{ $value->ip }}</td>
                             <td>{{ $value->note }}</td>
                           </tr>
                           @endforeach

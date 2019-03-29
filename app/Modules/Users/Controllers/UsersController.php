@@ -47,7 +47,7 @@ class UsersController extends Controller
         $page = $this->page;
         $action = "assignRole";
         $data = $this->model->find($id);
-        dd($this->model->roles($id));
+       
         $roles = Role::get();
       
         return view("Users::create", compact('data','roles','page','action'));
@@ -71,34 +71,29 @@ class UsersController extends Controller
     }
 
     public function store(Request $request)
+    {
 
-        {
+        $this->validate($request, [
 
-          $this->validate($request, [
+            'name' => 'required',
 
-              'name' => 'required',
+            'email' => 'required|email|unique:users,email',
 
-              'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
 
-              'password' => 'required|same:confirm-password',
+            'roles' => 'required'
 
-              'roles' => 'required'
+        ]);
 
-          ]);
+        $input = $request->all();
 
+        $input['password'] = Hash::make($input['password']);
 
-          $input = $request->all();
+        $user = User::create($input);
 
-          $input['password'] = Hash::make($input['password']);
-
-
-          $user = User::create($input);
-
-          $user->attachRole($request->input('roles'));
-            return redirect('users.create');
-
-
-        }
+        $user->attachRole($request->input('roles'));
+        return redirect('users.create');
+    }
 
 
 

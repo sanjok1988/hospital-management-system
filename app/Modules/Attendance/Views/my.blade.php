@@ -49,8 +49,8 @@
                 <div class="card-body">
                     <center>
                     <h5>Press Button For Attendance</h5>
-                    <a href="{{ route('employee.signin') }}" class="btn btn-success">Sign-In</a>
-                    <a href="{{ route('employee.signout') }}" class="btn btn-danger">Sign-Out</a>
+                    <a href="{{ route('employee.signin') }}" class="btn btn-success">Check-In</a>
+                    <a href="{{ route('employee.signout') }}" class="btn btn-danger">Check-Out</a>
                     </center>
                     
                 </div>

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Modules\Employees\Models\Employees;
 use App\Modules\Reviews\Models\ReviewResult;
+use Illuminate\Support\Facades\Validator;
 
 class EmployeesController extends Controller
 {
@@ -84,22 +85,50 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->has('id')) {
+        // $validator = Validator::make($request->all(), 
+        //     [
+        //         'work_email'=>'required|work_email|unique:employees'
+
+        //     ]);
+
+        //     if ($validator->fails()) {
+        //         return redirect()->back()
+        //         ->withErrors($validator)
+        //         ->withInput();
+        //     }
+
+        if ($request->has('id')) { 
+
             $find = $this->model->find($request->id);
            
             if ($find) {
-                $data = $request->except('_token','id');
+                $data = $request->except('_token','id', 'password');
+                if($request->has('password')){
+                    $d['password'] = Hash::make($request->password);
+                    $user = User::where('email',$find->work_email)->first();
+                    $user->update(['email'=>$request->work_email]);
+                }
+                if($find->work_email != $request->work_email){
+                    $user = User::where('email',$find->work_email)->first();
+                    $user->update(['email'=>$request->work_email]);
+                    
+                }
                 $find->update($data);
             }
         } else {
-            if ($this->model->create($request->except("_token"))) {
+            if ($this->model->create($request->except("_token","password"))) {
                 //lets create user account for employee
              
                 $user['name'] = $request->first_name;
                 $user['email'] = $request->work_email;
-                $user['password'] = Hash::make('last_name');
+                if($request->has('password')){
+                    $user['password'] = Hash::make($request->password);
+                }else{
+                    $user['password'] = Hash::make('last_name');
+                }
+                
 
-                if ($user = User::createUserAccount($user)) {
+                if ($user = User::create($user)) {
                     
                     if ($user->attachRole(Role::getIdByName('employee'))) {
                         $request->session()->flash('message', trans('words.success'));

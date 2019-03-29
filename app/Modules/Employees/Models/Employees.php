@@ -20,7 +20,11 @@ class Employees extends Model {
     }
 
     public static function getIdByEmail($email){
-        return Self::select('id')->where('work_email', $email)->first()->id;
+      $emp = Self::select('id')->where('work_email', $email)->first();
+         if($emp)
+            return $emp->id;
+        else
+            return null;
      }
 
 

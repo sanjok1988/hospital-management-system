@@ -78,10 +78,12 @@
                   </span>
               </a>
               <ul class="treeview-menu">
-                 
-                <li><a href="{{ url(route('review.show.form')) }}">Review Form</a></li>
+                <li><a href="{{ url(route('review.result')) }}">Review Result</a></li>
+                @permission('user-list')
+                <li><a href="{{ url(route('review.show.candidates')) }}">Candidates For Performance Review</a></li>
+                
                 <li><a href="{{ url(route('review.select.candidate')) }}">Select Candidate For Review</a></li>
-               
+               @endpermission
                
                
               </ul>
@@ -101,7 +103,7 @@
                   <a href="{{ url(route('questionnaire.index')) }}">View Questionnaire List</a></li>
                
                 <li class="{{ (Request::is('form/questionnaire/create'))?'active':''}}"><a href="{{ url(route('questionnaire.create')) }}">Create Questionnaire</a></li>
-                <li class="{{ (Request::is('form/create'))?'active':''}}"><a href="{{ url(route('form.create')) }}">Build Form</a></li>
+            
                 <li class="{{ (Request::is('form'))?'active':''}}"><a href="{{ url(route('form.index')) }}">Form List</a></li>
                
               </ul>
