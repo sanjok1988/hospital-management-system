@@ -54,7 +54,8 @@ class DoctorController extends Controller
     $user = User::create(['name'=>$request->name, 'email'=>$request->email, 'password'=>$hash]);
 
     if($user){
-      $user->attachRole('doctor');
+      DB::table('role_user')->insert(['user_id'=>$user->id, 'role_id'=>2]);
+      //$user->attachRole('doctor');
     }
     $data = $request->only(['name','contact','email','address','nmc_num','specialization','gender',
       'fee']);
