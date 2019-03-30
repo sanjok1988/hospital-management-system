@@ -1,0 +1,32 @@
+.btn-danger, .btn-danger.disabled{
+	background-color: #cc3d27;
+  
+}
+.btn-danger, .btn-danger.disabled:hover{
+	background-color: #cc3d27;
+  
+}
+.btn-primary, .btn-primary.disabled {
+    background: #3e4ec3;
+    border: 1px solid #b5a8b9;
+}
+.btn-primary, .btn-primary.disabled:hover {
+    background: #3e4ec3;
+    border: 1px solid #b5a8b9;
+}
+
+.my-auto h1 {
+    font-size: 6rem;
+    line-height: 5.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #b52b37;
+    margin-left: 20px;
+}
+.my-auto h1 span {
+    font-size: 6rem;
+    line-height: 5.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #10d6ce;
+}

@@ -1,5 +1,0 @@
-<?php
-
-/**
- *	Jobs Helper  
- */

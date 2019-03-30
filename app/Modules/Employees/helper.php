@@ -1,5 +1,0 @@
-<?php
-
-/**
- *	Employees Helper  
- */

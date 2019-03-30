@@ -1,5 +1,0 @@
-<?php
-
-/**
- *	Company Helper  
- */

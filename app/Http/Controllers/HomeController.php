@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\User;
 class HomeController extends Controller
 {
     /**
@@ -15,14 +14,29 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+      public function index()
     {
-        return view('Layouts::dashboard');
+        return view('home');
+    }
+    
+     public function home()
+    {
+        return view('home');
+    }
+    
+    public function login(){
+        return view('admin.login');
+    }
+    public function admin () {
+        return view('admin.index');
+    }
+    public function dashboard () {
+       
+         return view('admin.index');
     }
 }

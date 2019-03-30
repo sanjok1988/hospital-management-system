@@ -1,5 +1,0 @@
-<?php
-
-/**
- *	Options Helper  
- */
