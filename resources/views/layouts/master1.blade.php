@@ -134,7 +134,11 @@
                         </div> <!-- .main-navigation -->
                         
                         <div class="login">
+                        @if(Auth::user())
+                        <a href="{{ route('logout')}}">logout</a>
+                        @else
                             <a href="{{ route('login')}}">login</a>
+                            @endif
                         </div>
                         
                         <div class="mobile-navigation"><ul class="menu">

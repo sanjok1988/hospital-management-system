@@ -156,15 +156,19 @@ public function dashboard () {
   }
 
   public function patients () {
-     $patients = Preception::join('appointment as a','a.id', 'preceptions.appointment_id')
-     ->where('a.stauts','open')->get();
+    if(User::isDoctor()){
+      $patients = Preception::join('appointment as a','a.id', 'preceptions.appointment_id')
+     ->where('a.status','open')->where('a.doctor_id', User::getDoctorId())->get();
+    }else{
+      $patients = Preception::join('appointment as a','a.id', 'preceptions.appointment_id')
+     ->where('a.status','open')->get();
+    }
+     
     
       return view('doctor.patients')->with(compact('patients'));
   }
   public function appointments () {
-    //  $appointment = DB::table("appointment as a")->select("a.*","d.name as doctor")
-      //      ->join('doctor as d', 'a.doctor_id','=', 'd.id')
-        //    ->get();
+  
     if(Auth::user()->hasRole('doctor')){
           $data = DB::table("appointment as a")->select("a.*","d.name as doctor")
             ->join('doctor as d', 'a.doctor_id','=', 'd.id')

@@ -30,8 +30,7 @@ class Email extends Mailable
     {
         return $this->view('email')
         ->from('sanjog.dangol@gmail.com')
-        ->to("sada116@iimscollege.edu.np")
-        
+        ->to("sada116@iimscollege.edu.np")        
         ->subject("Apply For appoinment");
     }
 }

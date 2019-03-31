@@ -51,17 +51,17 @@ class PatientController extends Controller
 
         return view('patient')->with(compact('patients'));
     }
+
+
+
 // store the preceptions in the database
    
 
     public function store (Request $request) {
  
-     // $patients = Patient::all();
-
-     Mail::send(new Email);
    
     $data = Appointment::select('id','name','address','phone','gender','appointment_date')->find($request->appointment_id);
-$d = $request->only('preception');
+    $d = $request->only('preception');
 
     $d['appointment_id'] = $data->id;
     $data->update(['status'=>'closed']);
@@ -70,6 +70,7 @@ $d = $request->only('preception');
       $create = $this->preceptions->create($d);
       if($create){
         Alert::success('','Successfully Added');
+        //Mail::send(new Email);
         return view('doctor.index')->with(compact('patients'));
       }
     }
