@@ -1,6 +1,6 @@
 
 
-@extends('layouts.doctor')
+@extends('layouts.master')
 
 <style type="text/css">
 

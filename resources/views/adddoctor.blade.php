@@ -6,7 +6,9 @@
              <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    @role('doctor')
                         <h4 class="page-title">Add More Info of Doctor</h4> </div>
+                        @endrole
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> 
                         <ol class="breadcrumb">
                             <li><a href="#">Dashboard</a></li>
@@ -40,7 +42,7 @@
                                     <label for="example-email" class="col-md-12 col-sm-12">Password (for Login) *
                                     </label>
                                     <div class="col-md-12 col-sm-12">
-                                    <input type="Password" name="Password" class="form-control form-control-line"  required> </div>
+                                    <input type="password" name="password" class="form-control form-control-line"  required> </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12 col-sm-12 col-sm-12">Address *</label>

@@ -80,7 +80,7 @@ a {
                 </ul> -->
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li>
-                        <a class="profile-pic" href="{{route('home')}}"> <img src="plugins/images/users/manish.jpg" alt="user-img" width="48" height="48" class="img-circle" style="margin-top: 15px;">
+                        <a class="profile-pic" href="{{url('/')}}"> <img src="plugins/images/users/manish.jpg" alt="user-img" width="48" height="48" class="img-circle" style="margin-top: 15px;">
                             <b class="hidden-xs" style="margin-right: 10px; margin-left: -5px;">logout</b> </a>
                     </li>
                 </ul>

@@ -32,24 +32,23 @@
                                             <th>Gender</th>
                                             <th>Date of Birth</th>
                                             <th>Appointment Date</th>
-                                            <th>Doctor</th>
-                                            <th>Prescription</th>
-                                            <th>Status</th>
+                                         
+                                       
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @if($patients)
+                                    @foreach($patients as $patient)
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ $patient->id}}</td>
+                                            <td>{{ $patient->name}}</td>
+                                            <td>{{ $patient->address}}</td>
+                                            <td>{{ $patient->phone}}</td>
+                                            <td>{{ $patient->gender}}</td>
+                                            <td>{{ $patient->dob}}</td>
+                                            <td>{{ $patient->appointment_date}}</td>
+                                            
                                              <td> 
                                                 <a href="#" class="btn btn-sm btn-primary">Edit</a>
                                                 <a href="#" class="btn btn-sm btn-danger">Del</a> 
@@ -57,6 +56,8 @@
                                             class="btn btn-sm btn-success" style="background-color: #80b534;"> <span class="glyphicon glyphicon-eye-open"></span> Generate Bill </a>
                                       </td>
                                         </tr>
+                                        @endforeach
+                                        @endif
                              
                                     </tbody>
                                 </table>

@@ -13,6 +13,7 @@ use App\Schedule;
 use App\Patient;
 use App\Preception;
 use App\User;
+use Auth;
 use Illuminate\Support\Facades\Hash;
 class DoctorController extends Controller
 {
@@ -37,7 +38,12 @@ class DoctorController extends Controller
 
     public function index()
     {
+      if(Auth::user()->hasRole('doctor')){
+        $doctor = $this->doctor->where('id', User::getDoctorId())->get();
+      }else{
         $doctor = $this->doctor->get();
+      }
+       
         return view('doctor')->with(compact('doctor'));
 
     }
@@ -47,9 +53,12 @@ class DoctorController extends Controller
       return view("adddoctor")->with(compact('doctor'));
     }
 
+    /**
+    * Store new doctor
+     */
     public function store(Request $request){
 
-      $hash = Hash::make($request->password);
+      $hash = bcrypt($request->password);
 
     $user = User::create(['name'=>$request->name, 'email'=>$request->email, 'password'=>$hash]);
 

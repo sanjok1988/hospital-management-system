@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Preception;
-use App\Doctor;
-use App\Appointment;
 use Alert;
+use App\Doctor;
 use App\Patient;
+use App\User;
+use App\Mail\Email;
+use App\Preception;
+use App\Appointment;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 class PatientController extends Controller
 {
     /**
@@ -29,7 +33,14 @@ class PatientController extends Controller
      */
     public function index()
     {
-        return view('patient');
+      
+        if(User::isDoctor()){
+            $patients = Appointment::where('doctor_id', User::getDoctorId())->get();
+            
+        }else{
+            $patients = Appointment::get();
+        }
+        return view('patient', compact('patients'));
     }
 
 // view the patients details with doctor preceptions
@@ -46,6 +57,8 @@ class PatientController extends Controller
     public function store (Request $request) {
  
      // $patients = Patient::all();
+
+     Mail::send(new Email);
    
     $data = Appointment::select('id','name','address','phone','gender','appointment_date')->find($request->appointment_id);
 $d = $request->only('preception');

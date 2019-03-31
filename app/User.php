@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -32,5 +33,25 @@ class User extends Authenticatable
     public static function createUserAccount($data){
         $user = Self::create($data);
         return $user->id;
+    }
+
+    public static function getDoctorId(){
+        $doc = Self::where('email', Auth::user()->email)->first();
+       
+        if($doc){
+            return $doc->id;
+           
+        }else{
+            return null;
+        }
+    }
+
+    public static function isDoctor(){
+        
+        if(Auth::user()->hasRole('doctor')){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

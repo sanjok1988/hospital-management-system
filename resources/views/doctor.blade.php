@@ -21,8 +21,10 @@
                     <div class="col-sm-12">
                         <div class="white-box">
                             <h3 class="box-title">Doctor Details</h3>
+                             @role('admin')
                            <a href="{{url('add/doctor')}}" ><button class="btn btn-primary" 
                             style=" background: #198cd4;">Add Doctor</button></a> 
+                            @endrole
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -56,12 +58,13 @@
                                             <td>{{ $value->fee}}</td>
                                             
                                          <td> 
+                                         @role('admin')
                                          <a href="{{ url('doctor/edit/'.$value->id)}}" 
                                             class="btn btn-sm btn-primary">Edit</a>
 
                                          <a href="{{ url('doctor/del/'.$value->id)}}" 
                                             class="btn btn-sm btn-danger">Del</a>
-
+                                        @endrole
                                         <a href="{{ url('schedule/' .$value->id)}}" 
                                             class="btn btn-sm btn-success" style="background-color: #80b534;"> <span class="glyphicon glyphicon-eye-open"></span>schedule</a>
                                             

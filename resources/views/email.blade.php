@@ -1,0 +1,1 @@
+<h1> Your Prescription is recorded. Thank you</h1>
